@@ -1,0 +1,27 @@
+openapi: 3.0.0
+info:
+  title: Çiftlik API
+  version: 1.0.0
+paths:
+  /animals:
+    post:
+      summary: Yeni bir hayvan ekler
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                type:
+                  type: string
+                  enum: [Keçi, Koyun, Tavuk]
+                  description: Hayvanın türü
+                name:
+                  type: string
+                  description: Hayvanın adı
+      responses:
+        '201':
+          description: Hayvan başarıyla eklendi
+        '400':
+          description: Geçersiz istek
