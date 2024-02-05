@@ -65,26 +65,20 @@ public class AnimalServiceImpl implements AnimalService {
 
     }
 
-
-
-
     @Override
     public List<GetAnimalCountByTypeResponse> GetAnimalCountByTypeResponse() {
         return animalRepository.countAnimalsByType().stream()
-                .map(result -> new GetAnimalCountByTypeResponse(((Animal.AnimalType) result[0]).name(), ((Long) result[1]).intValue()))
+                .map(result -> new GetAnimalCountByTypeResponse(((Animal.AnimalType) result[0]).name(),
+                ((Long) result[1]).intValue()))
                 .collect(Collectors.toList());    }
 
     @Override
     public List<GetAnimalDetailResponse> getAnimalsByType(String type) {
         List<Animal> animals = animalRepository.findByType(Animal.AnimalType.valueOf(type.toUpperCase()));
         return animals.stream()
-                .map(animal -> modelMapperService.forResponse().map(animal, GetAnimalDetailResponse.class))
-                .collect(Collectors.toList()); // Bu satır düzeltilmelidir
+                .map(animal -> modelMapperService.forResponse()
+                .map(animal, GetAnimalDetailResponse.class))
+                .collect(Collectors.toList());
     }
-
-
-
-
-
 
 }

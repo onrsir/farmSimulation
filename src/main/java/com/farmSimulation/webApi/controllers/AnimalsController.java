@@ -25,11 +25,13 @@ public class AnimalsController {
     private AnimalService animalService;
 
     @GetMapping()
+    @Operation(summary = "Get All")
     public List<GetAllAnimalResponse> getAll() {
         return animalService.getAll();
     }
 
     @GetMapping("/{id}")
+    @Operation(summary = "Get By Id")
     public GetByIdAnimalsResponse getById(@PathVariable int id) {
         return animalService.getById(id);
     }
@@ -42,7 +44,7 @@ public class AnimalsController {
 */
    @PostMapping()
    @ResponseStatus(code = HttpStatus.CREATED)
-   @Operation(summary = "Yeni bir hayvan ekler")
+   @Operation(summary = "Create")
    public void add(@Parameter(description = "Hayvanın yaratılma isteği", required = true)
                    @RequestBody CreateAnimalRequest createAnimalRequest){
 
@@ -50,21 +52,25 @@ public class AnimalsController {
    }
 
     @PutMapping()
+    @Operation(summary = "Update")
     public void update(@RequestBody UpdateAnimalRequest updateAnimalRequest) {
         this.animalService.update(updateAnimalRequest);
     }
 
     @DeleteMapping("/{id}")
+    @Operation(summary = "Delete")
     public void delete(@PathVariable int id) {
         this.animalService.delete(id);
     }
 
     @GetMapping("/counts")
+    @Operation(summary = "Count")
     public List<GetAnimalCountByTypeResponse> getAnimalCountsByType() {
         return animalService.GetAnimalCountByTypeResponse();
     }
 
     @GetMapping("/by-type/{type}")
+    @Operation(summary = "Listing by type")
     public ResponseEntity<List<GetAnimalDetailResponse>> getAnimalsByType(@PathVariable String type) {
         List<GetAnimalDetailResponse> animals = animalService.getAnimalsByType(type);
         return ResponseEntity.ok().body(animals);
