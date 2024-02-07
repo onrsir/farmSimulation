@@ -1,6 +1,5 @@
 package com.farmSimulation.business.requests;
 
-import com.farmSimulation.entities.concretes.Animal;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Data;

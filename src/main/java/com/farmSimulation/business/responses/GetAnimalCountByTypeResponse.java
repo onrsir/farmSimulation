@@ -1,7 +1,6 @@
 package com.farmSimulation.business.responses;
 
 
-
 import lombok.Data;
 
 @Data
@@ -10,7 +9,7 @@ public class GetAnimalCountByTypeResponse {
     private int count;
 
     public GetAnimalCountByTypeResponse(String type, int count) {
-        this.type = type; // Enum'ı String'e çevirir
+        this.type = type;
         this.count = count;
     }
 }

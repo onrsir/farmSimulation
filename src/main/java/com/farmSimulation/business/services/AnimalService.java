@@ -6,7 +6,6 @@ import com.farmSimulation.business.responses.GetAllAnimalResponse;
 import com.farmSimulation.business.responses.GetAnimalCountByTypeResponse;
 import com.farmSimulation.business.responses.GetAnimalDetailResponse;
 import com.farmSimulation.business.responses.GetByIdAnimalsResponse;
-import com.farmSimulation.entities.concretes.Animal;
 
 import java.util.List;
 
