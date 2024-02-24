@@ -27,21 +27,16 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
 class AnimalServiceImplTest {
-
     @Mock
     private AnimalRepository animalRepository;
-
     @Mock
     private ModelMapperService modelMapperService;
-
     @InjectMocks
     private AnimalServiceImpl animalService;
-
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
     }
-
     @Test
     void getAllAnimalsTest() {
         when(animalRepository.findAll()).thenReturn(Collections.singletonList(new Animal()));
@@ -55,7 +50,6 @@ class AnimalServiceImplTest {
 
         verify(animalRepository, times(1)).findAll();
     }
-
     @Test
     void addAnimalTest() {
 

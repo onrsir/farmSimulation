@@ -6,15 +6,12 @@ import com.farmSimulation.business.responses.GetByIdAnimalsResponse;
 import com.farmSimulation.business.services.AnimalService;
 import com.farmSimulation.business.requests.CreateAnimalRequest;
 import com.farmSimulation.business.responses.GetAllAnimalResponse;
-import com.farmSimulation.entities.concretes.Animal;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import lombok.AllArgsConstructor;
-import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController

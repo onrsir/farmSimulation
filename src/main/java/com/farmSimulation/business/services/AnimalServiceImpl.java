@@ -6,10 +6,12 @@ import com.farmSimulation.business.responses.GetAllAnimalResponse;
 import com.farmSimulation.business.responses.GetAnimalCountByTypeResponse;
 import com.farmSimulation.business.responses.GetAnimalDetailResponse;
 import com.farmSimulation.business.responses.GetByIdAnimalsResponse;
+import com.farmSimulation.core.utilities.exception.ResourceNotFoundException;
 import com.farmSimulation.core.utilities.mappers.ModelMapperService;
 import com.farmSimulation.dataAccess.abstracts.AnimalRepository;
 import com.farmSimulation.entities.concretes.Animal;
 import lombok.AllArgsConstructor;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -56,13 +58,31 @@ public class AnimalServiceImpl implements AnimalService {
     public void update(UpdateAnimalRequest updateAnimalRequest) {
         Animal animal = this.modelMapperService.forRequest().map(updateAnimalRequest,Animal.class);
         this.animalRepository.save(animal);
-
     }
+
+    // hatayı yakalayamadık emrullah abiye sor!
+  /*  @Override
+    public void delete(int id) {
+        try {
+            this.animalRepository.deleteById(id);
+        } catch (EmptyResultDataAccessException ex) {
+            throw new ResourceNotFoundException("Animal not found with id: " + id);
+        } catch (Exception ex) {
+            throw new RuntimeException("An unexpected error occurred while deleting animal with id: " + id, ex);
+        }
+    }*/
 
     @Override
     public void delete(int id) {
-        this.animalRepository.deleteById(id);
-
+        Animal animal = this.animalRepository.findById(id).orElse(null);
+        if (animal == null) {
+            throw new ResourceNotFoundException("Animal not found with id: " + id);
+        }
+        try {
+            this.animalRepository.deleteById(id);
+        } catch (Exception ex) {
+            throw new RuntimeException("An unexpected error occurred while deleting animal with id: " + id, ex);
+        }
     }
 
     @Override
