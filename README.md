@@ -4,7 +4,7 @@
 - Spring Data JPA
 - Spring Security
 - JWT (JSON Web Token)
-- H2 db
+- H2 Database
 - Lombok
 - Swagger
 - Maven
